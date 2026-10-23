@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.novaclient.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "NovaEntityNameMixin",
+    "NovaPlayerNameMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

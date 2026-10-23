@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "com.example.namescrambler.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "EntityMixin",
+    "PlayerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

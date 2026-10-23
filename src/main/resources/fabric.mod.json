@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "novaclient",
+  "version": "${version}",
+  "name": "Nova Client",
+  "description": "All-in-one client with a Lunar-style mod menu.",
+  "authors": [
+    "ASGYT__"
+  ],
+  "contributors": [
+    "TheGamingAgentXd"
+  ],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.novaclient.NovaClient",
+      "com.example.fastcrystal.FastCrystal",
+      "com.example.safeanchor.SafeAnchorClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.18.0",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "mixins": [
+    "novaclient.mixins.json",
+    "fastcrystal.mixins.json",
+    "namescrambler.mixins.json"
+  ]
+}
