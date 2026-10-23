@@ -1,0 +1,37 @@
+name: build
+on: [push, workflow_dispatch]
+
+permissions:
+  contents: write   # needed to publish the release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: 21 }
+
+      - uses: gradle/actions/setup-gradle@v4
+        with: { gradle-version: "9.2.1" }
+
+      - name: Build (version = run number)
+        run: gradle build --no-daemon -Pmod_version=1.0.${{ github.run_number }}
+
+      - name: Name the jar v1, v2, v3...
+        run: |
+          mkdir out
+          cp build/libs/novaclient-1.0.${{ github.run_number }}.jar out/novaclient-v${{ github.run_number }}.jar
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: novaclient-v${{ github.run_number }}
+          path: out/*.jar
+
+      - name: Publish release v${{ github.run_number }}
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ github.run_number }}
+          name: Nova Client v${{ github.run_number }}
+          files: out/*.jar
